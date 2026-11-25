@@ -14,6 +14,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
     {
         yield from self::gatherAssertTypes(__DIR__ . '/data/collection-filter.php');
         yield from self::gatherAssertTypes(__DIR__ . '/data/collection-reject.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/collection-values-all.php');
     }
 
     #[DataProvider('dataFileAsserts')]

@@ -1,15 +1,18 @@
 # phpstan-illuminate-collections
 
-PHPStan type narrowing for `filter()`, `reject()` and `where()` on [`illuminate/collections`](https://github.com/illuminate/collections), for projects that use collections without Laravel (e.g. WordPress).
+PHPStan type narrowing for `filter()`, `reject()`, `where()` and `values()->all()` on [`illuminate/collections`](https://github.com/illuminate/collections), for projects that use collections without Laravel (e.g. WordPress).
 
-Ported from [Larastan](https://github.com/larastan/larastan) (`CollectionFilterRejectDynamicReturnTypeExtension`), which can't be installed without large parts of the Laravel framework. If you use Laravel, use Larastan instead.
+The filter/reject/where part is ported from [Larastan](https://github.com/larastan/larastan) (`CollectionFilterRejectDynamicReturnTypeExtension`), which can't be installed without large parts of the Laravel framework. If you use Laravel, use Larastan instead.
 
 ```php
 /** @var Collection<int, ?Post> $posts */
 $posts->filter();                          // Collection<int, Post>
 $posts->filter(fn ($p) => $p !== null);    // Collection<int, Post>
 $posts->reject();                          // Collection<int, null>
+$posts->filter()->values()->all();         // list<Post> (instead of array<int, Post>)
 ```
+
+`values()->all()` only returns a `list` when chained directly, not via a variable holding the `values()` result.
 
 ## Installation
 
