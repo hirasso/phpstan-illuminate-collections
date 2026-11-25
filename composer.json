@@ -37,6 +37,7 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": "bash tools/extract-phpstan-src.sh",
         "test": "phpunit",
         "analyse": "phpstan analyse"
     },

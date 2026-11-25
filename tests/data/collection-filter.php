@@ -14,7 +14,10 @@ class User
 
 class Account {}
 
-function convertToAccount(User $user): ?Account {}
+function convertToAccount(User $user): ?Account
+{
+    return $user->blocked ? null : new Account();
+}
 
 /**
  * @param Collection<int, User> $users
